@@ -6,10 +6,10 @@
 package com.israj.haliri.domain;
 
 /**
- *
  * @author israjhaliri
  */
 public class Resultset {
+
     private String message;
     private String status;
 
@@ -28,5 +28,4 @@ public class Resultset {
     public void setStatus(String status) {
         this.status = status;
     }
-    
 }

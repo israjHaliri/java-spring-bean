@@ -1,28 +1,29 @@
 package com.israj.haliri;
 
 import com.israj.haliri.domain.Resultset;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-/**
- * Hello world!
- *
- */
 public class App {
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("application-context.xml");
-        Resultset resultsetXml = (Resultset)ctx.getBean("baseBeans");
-        System.out.println("resultsetXml : "+resultsetXml.getMessage());
-        System.out.println("resultsetXml : "+resultsetXml.getStatus());
-        System.out.println("=================================");
-        
-        Resultset resultset = ctx.getBean(Resultset.class);
-        resultset.setMessage("Welcome Haliri");
-        resultset.setStatus("success by Haliri");
-        System.out.println("resultsetXml : "+resultset.getMessage());
-        System.out.println("resultsetXml : "+resultset.getStatus());
-        
+        ClassPathXmlApplicationContext ctx = null;
+        try {
+            ctx = new ClassPathXmlApplicationContext("classpath:/applicationContext.xml");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        Resultset resultsetXml = (Resultset) ctx.getBean("resultsetBean");
+
+        System.out.println("resultsetBeanXml message: " + resultsetXml.getMessage());
+        System.out.println("resultsetBeanXml status: " + resultsetXml.getStatus());
+        System.out.println("\n \n \n");
+
+        Resultset resultsetClass = ctx.getBean(Resultset.class);
+        resultsetClass.setMessage("Welcome Haliri");
+        resultsetClass.setStatus("success by Haliri");
+
+        System.out.println("resultsetBeanClass message: " + resultsetClass.getMessage());
+        System.out.println("resultsetBeanClass status: " + resultsetClass.getStatus());
     }
 }
